@@ -33,26 +33,26 @@ pull request에 지정된 label들을 문자열로 나타낸 것 입니다.<br>
 ex) "dev bump-major"
 
 ## `version_name_dev/stg/prod(선택)`
-프로젝트 내에서 사용 중인 versionName의 변수명을 입력합니다. 빌드 환경이 1개인 경우 dev, 2개인 경우 dev, stg, 3개인 경우 dev, stg, prod에 입력하면 됩니다.
+프로젝트 내에서 사용 중인 versionName의 변수명을 입력합니다. 빌드 환경이 1개인 경우 dev, 2개인 경우 dev, stg, 3개인 경우 dev, stg, prod에 입력하면 됩니다.<br>
 ex) "version_name_test_dev"
 
 ## `version_code_dev/stg/prod(선택)`
-프로젝트 내에서 사용 중인 versionCode의 변수명을 입력합니다. 빌드 환경이 1개인 경우 dev, 2개인 경우 dev, stg, 3개인 경우 dev, stg, prod에 입력하면 됩니다.
+프로젝트 내에서 사용 중인 versionCode의 변수명을 입력합니다. 빌드 환경이 1개인 경우 dev, 2개인 경우 dev, stg, 3개인 경우 dev, stg, prod에 입력하면 됩니다.<br>
 ex) "version_code_test_dev"
 
 # 출력값
 ## `current_version_name`
-선택한 빌드 환경의 버전 증가하기 전 버전 네임을 출력합니다.
+선택한 빌드 환경의 버전 증가하기 전 버전 네임을 출력합니다.<br>
 ex) ${{ steps.bump_version.outputs.current_version_name }}
 
 ## `current_version_code`
-선택한 빌드 환경의 버전 증가하기 전 버전 코드를 출력합니다.
+선택한 빌드 환경의 버전 증가하기 전 버전 코드를 출력합니다.<br>
 ex) ${{ steps.bump_version.outputs.current_version_code }}
 
 ## `next_version_name`
-선택한 빌드 환경의 버전 증가 후 버전 네임을 출력합니다.
+선택한 빌드 환경의 버전 증가 후 버전 네임을 출력합니다.<br>
 ex) ${{ steps.bump_version.outputs.next_version_name }}
 
 ## `next_version_code`
-선택한 빌드 환경의 버전 증가 후 버전 코드을 출력합니다.
+선택한 빌드 환경의 버전 증가 후 버전 코드을 출력합니다.<br>
 ex) ${{ steps.bump_version.outputs.next_version_code }}
