@@ -52,12 +52,12 @@ runs:
       run: |
           echo "FILE-PATH=${{ inputs.version_file_path }}" >> $GITHUB_ENV
           echo "PR-LABELS=${{ inputs.pr_labels }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-DEV-VARIABLE-NAME=${{ inputs.version_name_dev_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-STG-VARIABLE-NAME=${{ inputs.version_name_stg_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-PROD-VARIABLE-NAME=${{ inputs.version_name_prod_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-DEV-VARIABLE-NAME=${{ inputs.version_code_dev_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-STG-VARIABLE-NAME=${{ inputs.version_code_stg_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-PROD-VARIABLE-NAME=${{ inputs.version_code_prod_variable_name }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-DEV=${{ inputs.version_name_dev }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-STG=${{ inputs.version_name_stg }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-PROD=${{ inputs.version_name_prod }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-DEV=${{ inputs.version_code_dev }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-STG=${{ inputs.version_code_stg }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-PROD=${{ inputs.version_code_prod }}" >> $GITHUB_ENV
       shell: bash
     - name: Execute Python Script
       id: bump_version
