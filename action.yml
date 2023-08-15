@@ -69,3 +69,6 @@ runs:
       id: bump_version
       run: python src/control_multi_version.py
       shell: bash
+branding:
+  icon: 'check-circle'
+  color: 'blue'
