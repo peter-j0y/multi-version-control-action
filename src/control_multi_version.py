@@ -136,12 +136,12 @@ if __name__ == '__main__':
     pr_labels = os.environ.get('PR-LABELS')
 
     # 변수화
-    version_name_dev_variable_name = os.environ.get('version-name-dev')
-    version_name_stg_variable_name = os.environ.get('version-name-stg')
-    version_name_prod_variable_name = os.environ.get('version-name-prod')
-    version_code_dev_variable_name = os.environ.get('version-code-dev')
-    version_code_stg_variable_name = os.environ.get('version-code-stg')
-    version_code_prod_variable_name = os.environ.get('version-code-prod')
+    version_name_dev_variable_name = os.environ.get('VERSION-NAME-DEV')
+    version_name_stg_variable_name = os.environ.get('VERSION-NAME-STG')
+    version_name_prod_variable_name = os.environ.get('VERSION-NAME-PROD')
+    version_code_dev_variable_name = os.environ.get('VERSION-CODE-DEV')
+    version_code_stg_variable_name = os.environ.get('VERSION-CODE-STG')
+    version_code_prod_variable_name = os.environ.get('VERSION-CODE-PROD')
 
     version_name_dev = read_gradle_version_name(gradle_file_path, version_name_dev_variable_name)
     version_name_stg = read_gradle_version_name(gradle_file_path, version_name_stg_variable_name)
