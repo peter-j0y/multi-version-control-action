@@ -1,36 +1,45 @@
 name: 'Custom Github Action'
-description: 'A Github Action that takes an input and returns the square of the number'
+description: 'A Github Action that control multi version in project'
 inputs:
   version_file_path:
-    description: 'Enter a number'
+    description: 'Enter a file path'
     required: true
     default: "version.gradle"
   pr_labels:
     description: 'pr labels string'
     required: true
     default: ""
-  version_name_dev_variable_name:
+  version_name_dev:
     description: 'version name dev variable name'
     required: false
-  version_name_stg_variable_name:
+  version_name_stg:
     description: 'version name stg variable name'
     required: false
-  version_name_prod_variable_name:
+  version_name_prod:
     description: 'version name prod variable name'
     required: false
-  version_code_dev_variable_name:
+  version_code_dev:
     description: 'version_code_dev_variable_name'
     required: false
-  version_code_stg_variable_name:
+  version_code_stg:
     description: 'version_code_stg_variable_name'
     required: false
-  version_code_prod_variable_name:
+  version_code_prod:
     description: 'version_code_prod_variable_name'
     required: false
 outputs:
-  current_version:
-    description: 'current version'
-    value: $CURRENT_VERSION
+  current_version_name:
+    description: 'current version name'
+    value: $CURRENT_VERSION_NAME
+  next_version_name:
+    description: 'next version name'
+    value: $NEXT_VERSION_NAME
+  current_version_code:
+    description: 'current version code'
+    value: $CURRENT_VERSION_CODE
+  next_version_code:
+    description: 'next version code'
+    value: $NEXT_VERSION_CODE
 runs:
   using: 'composite'
   steps:
@@ -49,14 +58,14 @@ runs:
       run: |
           echo "FILE-PATH=${{ inputs.version_file_path }}" >> $GITHUB_ENV
           echo "PR-LABELS=${{ inputs.pr_labels }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-DEV-VARIABLE-NAME=${{ inputs.version_name_dev_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-STG-VARIABLE-NAME=${{ inputs.version_name_stg_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-NAME-PROD-VARIABLE-NAME=${{ inputs.version_name_prod_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-DEV-VARIABLE-NAME=${{ inputs.version_code_dev_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-STG-VARIABLE-NAME=${{ inputs.version_code_stg_variable_name }}" >> $GITHUB_ENV
-          echo "VERSION-CODE-PROD-VARIABLE-NAME=${{ inputs.version_code_prod_variable_name }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-DEV=${{ inputs.version_name_dev }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-STG=${{ inputs.version_name_stg }}" >> $GITHUB_ENV
+          echo "VERSION-NAME-PROD=${{ inputs.version_name_prod }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-DEV=${{ inputs.version_code_dev }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-STG=${{ inputs.version_code_stg }}" >> $GITHUB_ENV
+          echo "VERSION-CODE-PROD=${{ inputs.version_code_prod }}" >> $GITHUB_ENV
       shell: bash
-    - name: Fetch the number's square
-      id: get-square
+    - name: Execute Python Script
+      id: bump_version
       run: python src/control_multi_version.py
       shell: bash

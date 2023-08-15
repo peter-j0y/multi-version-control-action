@@ -45,10 +45,12 @@ def write_gradle_version(vc_variable_name, vn_variable_name, new_version_code, n
     with open(gradle_file_path, 'w') as file:
         file.write(updated_content)
 
+    print(f"Updated version : {new_version_name}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, 'a') as env_file:
         print(env_file)
-        env_file.write(f"NEXT_VERSION={new_version_name}\n")
+        env_file.write(f"NEXT_VERSION_NAME={new_version_name}\n")
+        env_file.write(f"NEXT_VERSION_CODE={new_version_code}\n")
         
 # label들을 해석하는 함수
 def decode_labels(labels):
@@ -98,26 +100,35 @@ def decode_labels(labels):
 
 # 버전 올리는 함수
 def bump_patch(vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version):
+    print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     patch_version += 1
     version_code += 1
     write_gradle_version(vc_variable_name, vn_variable_name, version_code, f"{major_version}.{minor_version}.{patch_version}")
 
 def bump_minor(vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version):
+    print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     patch_version = 0
     minor_version += 1
     version_code += 1
     write_gradle_version(vc_variable_name, vn_variable_name, version_code, f"{major_version}.{minor_version}.{patch_version}")
 
 def bump_major(vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version):
+    print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     major_version += 1
     minor_version = 0
     patch_version = 0
@@ -132,12 +143,12 @@ if __name__ == '__main__':
     pr_labels = os.environ.get('PR-LABELS')
 
     # 변수화
-    version_name_dev_variable_name = os.environ.get('version-name-dev')
-    version_name_stg_variable_name = os.environ.get('version-name-stg')
-    version_name_prod_variable_name = os.environ.get('version-name-prod')
-    version_code_dev_variable_name = os.environ.get('version-code-dev')
-    version_code_stg_variable_name = os.environ.get('version-code-stg')
-    version_code_prod_variable_name = os.environ.get('version-code-prod')
+    version_name_dev_variable_name = os.environ.get('VERSION-NAME-DEV')
+    version_name_stg_variable_name = os.environ.get('VERSION-NAME-STG')
+    version_name_prod_variable_name = os.environ.get('VERSION-NAME-PROD')
+    version_code_dev_variable_name = os.environ.get('VERSION-CODE-DEV')
+    version_code_stg_variable_name = os.environ.get('VERSION-CODE-STG')
+    version_code_prod_variable_name = os.environ.get('VERSION-CODE-PROD')
 
     version_name_dev = read_gradle_version_name(gradle_file_path, version_name_dev_variable_name)
     version_name_stg = read_gradle_version_name(gradle_file_path, version_name_stg_variable_name)
