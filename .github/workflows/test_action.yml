@@ -15,10 +15,10 @@ jobs:
         id: bump_version
         uses: ./ 
         with:
-          version_file_path: "version.gradle"
+          version_file_path: "./version.gradle"
           pr_labels: " dev  bump-patch "
-          version_name_dev_variable_name: "version_name_test_dev"
-          version_code_dev_variable_name: "version_code_test_dev"
+          version_name_dev: "version_name_test_dev"
+          version_code_dev: "version_code_test_dev"
 
       - name: Print current version & next version
         run: |

@@ -9,22 +9,22 @@ inputs:
     description: 'pr labels string'
     required: true
     default: ""
-  version_name_dev_variable_name:
+  version_name_dev:
     description: 'version name dev variable name'
     required: false
-  version_name_stg_variable_name:
+  version_name_stg:
     description: 'version name stg variable name'
     required: false
-  version_name_prod_variable_name:
+  version_name_prod:
     description: 'version name prod variable name'
     required: false
-  version_code_dev_variable_name:
+  version_code_dev:
     description: 'version_code_dev_variable_name'
     required: false
-  version_code_stg_variable_name:
+  version_code_stg:
     description: 'version_code_stg_variable_name'
     required: false
-  version_code_prod_variable_name:
+  version_code_prod:
     description: 'version_code_prod_variable_name'
     required: false
 outputs:
