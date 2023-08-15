@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Execute action
         id: bump_version
         uses: ./ 
@@ -18,7 +19,8 @@ jobs:
           pr_labels: " dev  bump-patch "
           version_name_dev_variable_name: "version_name_test_dev"
           version_code_dev_variable_name: "version_code_test_dev"
+
       - name: Print current version & next version
         run: |
-          echo "$CURRENT_VERSION"
-          echo "$NEXT_VERSION"
+          echo ${{ steps.bump_version.outputs.current_version }}
+          echo ${{ steps.bump_version.outputs.next_version }}

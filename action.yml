@@ -31,6 +31,9 @@ outputs:
   current_version:
     description: 'current version'
     value: $CURRENT_VERSION
+  next_version:
+    description: 'next version'
+    value: $NEXT_VERSION
 runs:
   using: 'composite'
   steps:
