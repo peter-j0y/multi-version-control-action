@@ -1,0 +1,8 @@
+ext {
+    version_name_test_dev = "9.0.0"
+    version_name_test_stg = "1.0.0"
+    version_name_test_prod = "1.0.0"
+    version_code_test_dev = 43
+    version_code_test_stg = 41
+    version_code_test_prod = 41
+}
