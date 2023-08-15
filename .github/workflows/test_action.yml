@@ -13,14 +13,14 @@ jobs:
 
       - name: Get PR labels
         id: pr-labels
-        uses: actions/labeler@v4
+        uses: joerick/pr-labels-action@v1.0.8
 
       - name: Execute action
         id: bump_version
         uses: ./ 
         with:
           version_file_path: "./version.gradle"
-          pr_labels: ${{ steps.pr-labels.outputs.all-labels }}
+          pr_labels: ${{ steps.pr-labels.outputs.labels }}
           version_name_dev: "version_name_test_dev"
           version_name_stg: "version_name_test_stg"
           version_name_prod: "version_name_test_prod"
