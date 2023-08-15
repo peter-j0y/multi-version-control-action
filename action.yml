@@ -70,5 +70,5 @@ runs:
       run: python src/control_multi_version.py
       shell: bash
 branding:
-  icon: 'check-circle'
+  icon: 'play'
   color: 'blue'
