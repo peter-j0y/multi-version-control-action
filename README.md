@@ -7,10 +7,6 @@ VersionCode의 경우, 선택한 빌드 스테이지의 VersionCode가 1씩 증�
 
 # 사용법
 ```yml
-- name: Get PR labels
-  id: pr-labels
-  uses: joerick/pr-labels-action@v1.0.8
-
 - name: Execute action
   id: bump_version
   uses: ./ 
