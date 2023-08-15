@@ -49,11 +49,12 @@ def write_gradle_version(vc_variable_name, vn_variable_name, new_version_code, n
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, 'a') as env_file:
         print(env_file)
-        env_file.write(f"NEXT_VERSION={new_version_name}\n")
+        env_file.write(f"NEXT_VERSION_NAME={new_version_name}\n")
+        env_file.write(f"NEXT_VERSION_CODE={new_version_code}\n")
         
 # label들을 해석하는 함수
 def decode_labels(labels):
-    label_list = labels.split(' ')
+    label_list = labels.split(',')
     print(label_list)
     if 'dev' in label_list and version_code_dev is not None and version_name_dev is not None:
         version_code = int(version_code_dev)
@@ -64,11 +65,11 @@ def decode_labels(labels):
         patch_version = int(version_name_dev
 .split('.')[2])
 
-        if 'bump-patch' in label_list:
+        if 'bump patch' in label_list:
             bump_patch(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-minor' in label_list:
+        if 'bump minor' in label_list:
             bump_minor(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-major' in label_list:
+        if 'bump major' in label_list:
             bump_major(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
 
     if 'stg' in label_list and version_code_stg is not None and version_name_stg is not None:
@@ -77,11 +78,11 @@ def decode_labels(labels):
         minor_version = int(version_name_stg.split('.')[1])
         patch_version = int(version_name_stg.split('.')[2])
 
-        if 'bump-patch' in label_list:
+        if 'bump patch' in label_list:
             bump_patch(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-minor' in label_list:
+        if 'bump minor' in label_list:
             bump_minor(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-major' in label_list:
+        if 'bump major' in label_list:
             bump_major(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
 
     if 'prod' in label_list and version_code_prod is not None and version_name_prod is not None:
@@ -90,11 +91,11 @@ def decode_labels(labels):
         minor_version = int(version_name_prod.split('.')[1])
         patch_version = int(version_name_prod.split('.')[2])
 
-        if 'bump-patch' in label_list:
+        if 'bump patch' in label_list:
             bump_patch(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-minor' in label_list:
+        if 'bump minor' in label_list:
             bump_minor(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-major' in label_list:
+        if 'bump major' in label_list:
             bump_major(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
 
 # 버전 올리는 함수
@@ -102,7 +103,9 @@ def bump_patch(vc_variable_name, vn_variable_name, version_code, major_version, 
     print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     patch_version += 1
     version_code += 1
     write_gradle_version(vc_variable_name, vn_variable_name, version_code, f"{major_version}.{minor_version}.{patch_version}")
@@ -111,7 +114,9 @@ def bump_minor(vc_variable_name, vn_variable_name, version_code, major_version, 
     print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     patch_version = 0
     minor_version += 1
     version_code += 1
@@ -121,7 +126,9 @@ def bump_major(vc_variable_name, vn_variable_name, version_code, major_version, 
     print(f"Current version : {major_version}.{minor_version}.{patch_version}")
     env_file = os.getenv('GITHUB_ENV')
     with open(env_file, "a") as my_file:
-        my_file.write(f"CURRENT_VERSION={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}\n")
+        my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
+
     major_version += 1
     minor_version = 0
     patch_version = 0

@@ -11,16 +11,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Get PR labels
+        id: pr-labels
+        uses: actions/labeler@v4
+
       - name: Execute action
         id: bump_version
         uses: ./ 
         with:
           version_file_path: "./version.gradle"
-          pr_labels: " dev  bump-patch "
+          pr_labels: ${{ steps.pr-labels.outputs.all-labels }}
           version_name_dev: "version_name_test_dev"
+          version_name_stg: "version_name_test_stg"
+          version_name_prod: "version_name_test_prod"
           version_code_dev: "version_code_test_dev"
+          version_code_stg: "version_code_test_stg"
+          version_code_prod: "version_code_test_prod"
 
       - name: Print current version & next version
         run: |
-          echo ${{ steps.bump_version.outputs.current_version }}
-          echo ${{ steps.bump_version.outputs.next_version }}
+          echo ${{ steps.bump_version.outputs.current_version_name }}
+          echo ${{ steps.bump_version.outputs.current_version_code }}
+          echo ${{ steps.bump_version.outputs.next_version_name }}
+          echo ${{ steps.bump_version.outputs.next_version_code }}

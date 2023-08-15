@@ -28,12 +28,18 @@ inputs:
     description: 'version_code_prod_variable_name'
     required: false
 outputs:
-  current_version:
-    description: 'current version'
-    value: $CURRENT_VERSION
-  next_version:
-    description: 'next version'
-    value: $NEXT_VERSION
+  current_version_name:
+    description: 'current version name'
+    value: $CURRENT_VERSION_NAME
+  next_version_name:
+    description: 'next version name'
+    value: $NEXT_VERSION_NAME
+  current_version_code:
+    description: 'current version code'
+    value: $CURRENT_VERSION_CODE
+  next_version_code:
+    description: 'next version code'
+    value: $NEXT_VERSION_CODE
 runs:
   using: 'composite'
   steps:
