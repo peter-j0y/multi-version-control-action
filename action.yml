@@ -1,8 +1,8 @@
 name: 'Custom Github Action'
-description: 'A Github Action that takes an input and returns the square of the number'
+description: 'A Github Action that control multi version in project'
 inputs:
   version_file_path:
-    description: 'Enter a number'
+    description: 'Enter a file path'
     required: true
     default: "version.gradle"
   pr_labels:
@@ -59,7 +59,7 @@ runs:
           echo "VERSION-CODE-STG-VARIABLE-NAME=${{ inputs.version_code_stg_variable_name }}" >> $GITHUB_ENV
           echo "VERSION-CODE-PROD-VARIABLE-NAME=${{ inputs.version_code_prod_variable_name }}" >> $GITHUB_ENV
       shell: bash
-    - name: Fetch the number's square
-      id: get-square
+    - name: Execute Python Script
+      id: bump_version
       run: python src/control_multi_version.py
       shell: bash
