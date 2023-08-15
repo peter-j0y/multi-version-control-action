@@ -1,4 +1,4 @@
-name: 'Custom Github Action'
+name: 'Control multi version action'
 description: 'A Github Action that control multi version in project'
 inputs:
   version_file_path:
