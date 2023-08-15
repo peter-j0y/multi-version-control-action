@@ -9,7 +9,7 @@ VersionCode의 경우, 선택한 빌드 스테이지의 VersionCode가 1씩 증�
 ```yml
 - name: Execute action
   id: bump_version
-  uses: ./ 
+  uses: Seungmin-develop/multi-version-control-action@v1.0.0
   with:
     version_file_path: "./version.gradle"
     pr_labels: ${{ steps.pr-labels.outputs.labels }}
