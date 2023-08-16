@@ -67,7 +67,7 @@ runs:
       shell: bash
     - name: Execute Python Script
       id: bump_version
-      run: python src/control_multi_version.py
+      run: python ${{github.action_path}}/src/control_multi_version.py
       shell: bash
 branding:
   icon: 'play'
