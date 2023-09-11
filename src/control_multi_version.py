@@ -53,7 +53,7 @@ def write_gradle_version(vc_variable_name, vn_variable_name, new_version_code, n
         env_file.write(f"NEXT_VERSION_CODE={new_version_code}\n")
         
 # label들을 해석하는 함수
-def decode_labels(labels):
+def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod, version_code_dev, version_code_stg, version_code_prod):
     label_list = labels.split(' ')
     print(label_list)
     if 'all' in label_list:
@@ -174,15 +174,9 @@ if __name__ == '__main__':
     version_name_dev = read_gradle_version_name(gradle_file_path, version_name_dev_variable_name)
     version_name_stg = read_gradle_version_name(gradle_file_path, version_name_stg_variable_name)
     version_name_prod = read_gradle_version_name(gradle_file_path, version_name_prod_variable_name)
-    print("version_name_dev = " + str(version_name_dev))
-    print("version_name_stg = " + str(version_name_stg))
-    print("version_name_prod = " + str(version_name_prod))
 
     version_code_dev = read_gradle_version_code(gradle_file_path, version_code_dev_variable_name)
     version_code_stg = read_gradle_version_code(gradle_file_path, version_code_stg_variable_name)
     version_code_prod = read_gradle_version_code(gradle_file_path, version_code_prod_variable_name)
-    print("version_code_dev = " + str(version_code_dev))
-    print("version_code_stg = " + str(version_code_stg))
-    print("version_code_prod = " + str(version_code_prod))
 
-    decode_labels(pr_labels)
+    decode_labels(pr_labels, version_name_dev, version_name_stg, version_name_prod, version_code_dev, version_code_stg, version_code_prod)
