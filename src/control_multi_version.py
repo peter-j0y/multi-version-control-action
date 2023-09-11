@@ -53,50 +53,71 @@ def write_gradle_version(vc_variable_name, vn_variable_name, new_version_code, n
         env_file.write(f"NEXT_VERSION_CODE={new_version_code}\n")
         
 # label들을 해석하는 함수
-def decode_labels(labels):
+def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod, version_code_dev, version_code_stg, version_code_prod):
     label_list = labels.split(' ')
     print(label_list)
-    if 'dev' in label_list and version_code_dev is not None and version_name_dev is not None:
-        version_code = int(version_code_dev)
-        major_version = int(version_name_dev
-.split('.')[0])
-        minor_version = int(version_name_dev
-.split('.')[1])
-        patch_version = int(version_name_dev
-.split('.')[2])
+    if 'all' in label_list:
+        version_code_dev = int(version_code_dev); version_code_stg = int(version_code_stg); version_code_prod = int(version_code_prod)
+        major_version_dev = int(version_name_dev.split('.')[0]); minor_version_dev = int(version_name_dev.split('.')[1]); patch_version_dev = int(version_name_dev.split('.')[2])
+        major_version_stg = int(version_name_stg.split('.')[0]); minor_version_stg = int(version_name_stg.split('.')[1]); patch_version_stg = int(version_name_stg.split('.')[2])
+        major_version_prod = int(version_name_prod.split('.')[0]); minor_version_prod = int(version_name_prod.split('.')[1]); patch_version_prod = int(version_name_prod.split('.')[2])
 
         if 'bump-patch' in label_list:
-            bump_patch(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            bump_patch(version_code_dev_variable_name, version_name_dev_variable_name, version_code_dev, major_version_dev, minor_version_dev, patch_version_dev)
+            bump_patch(version_code_stg_variable_name, version_name_stg_variable_name, version_code_stg, major_version_stg, minor_version_stg, patch_version_stg)
+            bump_patch(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
+
         if 'bump-minor' in label_list:
             bump_minor(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            bump_minor(version_code_stg_variable_name, version_name_stg_variable_name, version_code_stg, major_version_stg, minor_version_stg, patch_version_stg)
+            bump_minor(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
+
         if 'bump-major' in label_list:
             bump_major(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            bump_major(version_code_stg_variable_name, version_name_stg_variable_name, version_code_stg, major_version_stg, minor_version_stg, patch_version_stg)
+            bump_major(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
 
-    if 'stg' in label_list and version_code_stg is not None and version_name_stg is not None:
-        version_code = int(version_code_stg)
-        major_version = int(version_name_stg.split('.')[0])
-        minor_version = int(version_name_stg.split('.')[1])
-        patch_version = int(version_name_stg.split('.')[2])
+    else:
+        if 'dev' in label_list and version_code_dev is not None and version_name_dev is not None:
+            version_code = int(version_code_dev)
+            major_version = int(version_name_dev.split('.')[0])
+            minor_version = int(version_name_dev.split('.')[1])
+            patch_version = int(version_name_dev.split('.')[2])
 
-        if 'bump-patch' in label_list:
-            bump_patch(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-minor' in label_list:
-            bump_minor(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-major' in label_list:
-            bump_major(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-patch' in label_list:
+                bump_patch(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-minor' in label_list:
+                bump_minor(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-major' in label_list:
+                bump_major(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+                
 
-    if 'prod' in label_list and version_code_prod is not None and version_name_prod is not None:
-        version_code = int(version_code_prod)
-        major_version = int(version_name_prod.split('.')[0])
-        minor_version = int(version_name_prod.split('.')[1])
-        patch_version = int(version_name_prod.split('.')[2])
+        if 'stg' in label_list and version_code_stg is not None and version_name_stg is not None:
+            version_code = int(version_code_stg)
+            major_version = int(version_name_stg.split('.')[0])
+            minor_version = int(version_name_stg.split('.')[1])
+            patch_version = int(version_name_stg.split('.')[2])
 
-        if 'bump-patch' in label_list:
-            bump_patch(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-minor' in label_list:
-            bump_minor(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
-        if 'bump-major' in label_list:
-            bump_major(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-patch' in label_list:
+                bump_patch(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-minor' in label_list:
+                bump_minor(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-major' in label_list:
+                bump_major(version_code_stg_variable_name, version_name_stg_variable_name, version_code, major_version, minor_version, patch_version)
+
+
+        if 'prod' in label_list and version_code_prod is not None and version_name_prod is not None:
+            version_code = int(version_code_prod)
+            major_version = int(version_name_prod.split('.')[0])
+            minor_version = int(version_name_prod.split('.')[1])
+            patch_version = int(version_name_prod.split('.')[2])
+
+            if 'bump-patch' in label_list:
+                bump_patch(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-minor' in label_list:
+                bump_minor(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
+            if 'bump-major' in label_list:
+                bump_major(version_code_prod_variable_name, version_name_prod_variable_name, version_code, major_version, minor_version, patch_version)
 
 # 버전 올리는 함수
 def bump_patch(vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version):
@@ -158,4 +179,4 @@ if __name__ == '__main__':
     version_code_stg = read_gradle_version_code(gradle_file_path, version_code_stg_variable_name)
     version_code_prod = read_gradle_version_code(gradle_file_path, version_code_prod_variable_name)
 
-    decode_labels(pr_labels)
+    decode_labels(pr_labels, version_name_dev, version_name_stg, version_name_prod, version_code_dev, version_code_stg, version_code_prod)
