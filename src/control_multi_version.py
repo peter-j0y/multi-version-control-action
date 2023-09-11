@@ -157,13 +157,10 @@ def bump_major(vc_variable_name, vn_variable_name, version_code, major_version, 
     write_gradle_version(vc_variable_name, vn_variable_name, version_code, f"{major_version}.{minor_version}.{patch_version}")
 
 if __name__ == '__main__':
-    # 변수화
     gradle_file_path = os.environ.get('FILE-PATH')
 
-    # 변수화
     pr_labels = os.environ.get('PR-LABELS')
 
-    # 변수화
     version_name_dev_variable_name = os.environ.get('VERSION-NAME-DEV')
     version_name_stg_variable_name = os.environ.get('VERSION-NAME-STG')
     version_name_prod_variable_name = os.environ.get('VERSION-NAME-PROD')
