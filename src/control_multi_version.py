@@ -68,12 +68,12 @@ def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod,
             bump_patch(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
 
         if 'bump-minor' in label_list:
-            bump_minor(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            bump_minor(version_code_dev_variable_name, version_name_dev_variable_name, version_code_dev, major_version_dev, minor_version_dev, patch_version_dev)
             bump_minor(version_code_stg_variable_name, version_name_stg_variable_name, version_code_stg, major_version_stg, minor_version_stg, patch_version_stg)
             bump_minor(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
 
         if 'bump-major' in label_list:
-            bump_major(version_code_dev_variable_name, version_name_dev_variable_name, version_code, major_version, minor_version, patch_version)
+            bump_major(version_code_dev_variable_name, version_name_dev_variable_name, version_code_dev, major_version_dev, minor_version_dev, patch_version_dev)
             bump_major(version_code_stg_variable_name, version_name_stg_variable_name, version_code_stg, major_version_stg, minor_version_stg, patch_version_stg)
             bump_major(version_code_prod_variable_name, version_name_prod_variable_name, version_code_prod, major_version_prod, minor_version_prod, patch_version_prod)
 
