@@ -58,9 +58,9 @@ def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod,
     print(label_list)
     if 'all' in label_list:
         version_code_dev = int(version_code_dev); version_code_stg = int(version_code_stg); version_code_prod = int(version_code_prod)
-        major_version_dev = int(version_name_dev.split('.')[0]); minor_version_dev = int(version_name_dev.split[1]); patch_version_dev = int(version_name_dev.split[2])
-        major_version_stg = int(version_name_stg.split('.')[0]); minor_version_stg = int(version_name_stg.split[1]); patch_version_stg = int(version_name_stg.split[2])
-        major_version_prod = int(version_name_prod.split('.')[0]); minor_version_prod = int(version_name_prod.split[1]); patch_version_prod = int(version_name_prod.split[2])
+        major_version_dev = int(version_name_dev.split('.')[0]); minor_version_dev = int(version_name_dev.split('.')[1]); patch_version_dev = int(version_name_dev.split('.')[2])
+        major_version_stg = int(version_name_stg.split('.')[0]); minor_version_stg = int(version_name_stg.split('.')[1]); patch_version_stg = int(version_name_stg.split('.')[2])
+        major_version_prod = int(version_name_prod.split('.')[0]); minor_version_prod = int(version_name_prod.split('.')[1]); patch_version_prod = int(version_name_prod.split('.')[2])
 
         if 'bump-patch' in label_list:
             bump_patch(version_code_dev_variable_name, version_name_dev_variable_name, version_code_dev, major_version_dev, minor_version_dev, patch_version_dev)
