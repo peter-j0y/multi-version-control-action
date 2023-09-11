@@ -57,9 +57,7 @@ def decode_labels(labels):
     label_list = labels.split(' ')
     print(label_list)
     if 'all' in label_list:
-        version_code_dev = int(version_code_dev)
-        version_code_stg = int(version_code_stg)
-        version_code_prod = int(version_code_prod)
+        version_code_dev = int(version_code_dev); version_code_stg = int(version_code_stg); version_code_prod = int(version_code_prod)
         major_version_dev = int(version_name_dev.split('.')[0]); minor_version_dev = int(version_name_dev.split[1]); patch_version_dev = int(version_name_dev.split[2])
         major_version_stg = int(version_name_stg.split('.')[0]); minor_version_stg = int(version_name_stg.split[1]); patch_version_stg = int(version_name_stg.split[2])
         major_version_prod = int(version_name_prod.split('.')[0]); minor_version_prod = int(version_name_prod.split[1]); patch_version_prod = int(version_name_prod.split[2])
@@ -176,9 +174,15 @@ if __name__ == '__main__':
     version_name_dev = read_gradle_version_name(gradle_file_path, version_name_dev_variable_name)
     version_name_stg = read_gradle_version_name(gradle_file_path, version_name_stg_variable_name)
     version_name_prod = read_gradle_version_name(gradle_file_path, version_name_prod_variable_name)
+    print("version_name_dev = " + version_name_dev)
+    print("version_name_stg = " + version_name_stg)
+    print("version_name_prod = " + version_name_prod)
 
     version_code_dev = read_gradle_version_code(gradle_file_path, version_code_dev_variable_name)
     version_code_stg = read_gradle_version_code(gradle_file_path, version_code_stg_variable_name)
     version_code_prod = read_gradle_version_code(gradle_file_path, version_code_prod_variable_name)
+    print("version_code_dev = " + version_code_dev)
+    print("version_code_stg = " + version_code_stg)
+    print("version_code_prod = " + version_code_prod)
 
     decode_labels(pr_labels)
