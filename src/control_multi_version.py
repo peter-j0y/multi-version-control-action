@@ -59,6 +59,7 @@ def write_gradle_version(vc_variable_name, vn_variable_name, new_version_code, n
         env_file.write(f"NEXT_VERSION_NAME={new_version_name}\n")
         env_file.write(f"NEXT_VERSION_CODE={new_version_code}\n")
         
+
 # label들을 해석하는 함수
 def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod, version_code_dev, version_code_stg, version_code_prod):
     label_list = labels.split(' ')
@@ -87,6 +88,7 @@ def update_version(arg, label_list):
     for version_type in list(VersionCategory):
         if f'bump-{version_type.name.lower()}' in label_list:
             bump_version(version_type, arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
+
 
 # 버전 올리는 함수
 def bump_version(version_category, vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version, revision_version) :
