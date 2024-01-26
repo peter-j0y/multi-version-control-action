@@ -89,6 +89,7 @@ def update_version(arg, label_list):
         if f'bump-{version_type.name.lower()}' in label_list:
             bump_version(version_type, arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
 
+
 # 버전 올리는 함수
 def bump_version(version_category, vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version, revision_version) :
     print(f"Current version : {major_version}.{minor_version}.{patch_version}.{revision_version}")
