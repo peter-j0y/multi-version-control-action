@@ -83,6 +83,7 @@ def decode_labels(labels, version_name_dev, version_name_stg, version_name_prod,
 
 def update_version(arg, label_list):
     version_code = int(arg['version_code'])
+    print(arg['version_name'])
     major_version, minor_version, patch_version, revision_version = map(int, arg['version_name'].split('.'))
 
     for version_type in list(VersionCategory):
