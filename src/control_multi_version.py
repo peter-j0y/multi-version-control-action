@@ -7,6 +7,7 @@ class VersionCategory(Enum):
     PATCH = auto()
     MINOR = auto()
     MAJOR = auto()
+    NONE = auto()
 
 # version_name 읽는 함수
 def read_gradle_version_name(gradle_file_path, variable_name):
@@ -85,10 +86,14 @@ def update_version(arg, label_list):
     version_code = int(arg['version_code'])
     major_version, minor_version, patch_version, revision_version = map(int, arg['version_name'].split('.'))
 
+    isBumpLabelNotExist = True
     for version_type in list(VersionCategory):
         if f'bump-{version_type.name.lower()}' in label_list:
+            isBumpLabelExist = false
             bump_version(version_type, arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
 
+    if isBumpLabelNotExist:
+        bump_version(VersionCategory.NONE , arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
 
 # 버전 올리는 함수
 def bump_version(version_category, vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version, revision_version) :
