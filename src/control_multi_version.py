@@ -89,6 +89,7 @@ def update_version(arg, label_list):
     isBumpLabelNotExist = True
 
     for version_type in list(VersionCategory):
+        print(f'bump-{version_type.name.lower()}')
         if f'bump-{version_type.name.lower()}' in label_list:
             isBumpLabelNotExist = False
             bump_version(version_type, arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
