@@ -97,8 +97,9 @@ def bump_version(version_category, vc_variable_name, vn_variable_name, version_c
         my_file.write(f"CURRENT_VERSION_NAME={major_version}.{minor_version}.{patch_version}.{revision_version}\n")
         my_file.write(f"CURRENT_VERSION_CODE={version_code}\n")
 
-    # version_code는 항상 증가
-    version_code += 1
+    # bump label 없는 경우에만 version code 증가
+    if (version_category is VersionCategory.NONE):
+        version_code += 1
 
     if version_category is VersionCategory.REVISION:
         revision_version += 1
