@@ -87,10 +87,11 @@ def update_version(arg, label_list):
     major_version, minor_version, patch_version, revision_version = map(int, arg['version_name'].split('.'))
 
     isBumpLabelNotExist = True
+
     for version_type in list(VersionCategory):
         print(f'bump-{version_type.name.lower()}')
         if f'bump-{version_type.name.lower()}' in label_list:
-            isBumpLabelExist = False
+            isBumpLabelNotExist = False
             bump_version(version_type, arg['version_code_variable_name'], arg['version_name_variable_name'], version_code, major_version, minor_version, patch_version, revision_version)
 
     if isBumpLabelNotExist:
@@ -98,7 +99,7 @@ def update_version(arg, label_list):
 
 # 버전 올리는 함수
 def bump_version(version_category, vc_variable_name, vn_variable_name, version_code, major_version, minor_version, patch_version, revision_version) :
-    print(f"Current version : {major_version}.{minor_version}.{patch_version}.{revision_version}")
+    print(f"Current version : {major_version}.{minor_version}.{patch_version}.{revision_version}, version category : {version_category}")
     env_file = os.getenv('GITHUB_ENV')
 
     with open(env_file, "a") as my_file:
