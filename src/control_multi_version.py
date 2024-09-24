@@ -21,6 +21,7 @@ def read_gradle_version_name(gradle_file_path, variable_name):
         return match.group(1)
     else:
         return None
+        
 
 # version_code 읽는 함수
 def read_gradle_version_code(gradle_file_path, variable_name):
